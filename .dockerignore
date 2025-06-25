@@ -1,0 +1,37 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Media files (you typically don't want to include test or user uploads in the image)
+media/
+*.MOV
+*.mp4
+
+# Hidden/system files
+.DS_Store
+*.swp
+*.swo
+
+# Git and editor config
+.git/
+.gitignore
+.vscode/
+.idea/
+*.code-workspace
+
+# System files
+Thumbs.db
+desktop.ini
+
+# Docker
+.dockerignore
+Dockerfile
+start.sh
+render.yaml
