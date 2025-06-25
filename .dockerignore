@@ -1,36 +1,29 @@
-# Byte-compiled / cache files
+# Ignore Python bytecode
 __pycache__/
 *.py[cod]
 *.sqlite3
 *.log
 
-# Virtual environments
+# Ignore virtual environments
 env/
 venv/
 .venv/
 
-# Media files (you typically don't want to include test or user uploads in the image)
+# Ignore large/local media and models
 media/
 *.MOV
 *.mp4
+*.h5  # Important: exclude any model from being copied into Docker
 
-# Hidden/system files
+# Ignore system and editor files
 .DS_Store
 *.swp
 *.swo
-
-# Git and editor config
-.git/
-.gitignore
-.vscode/
-.idea/
-*.code-workspace
-
-# System files
 Thumbs.db
 desktop.ini
 
-# Docker
-.dockerignore
-Dockerfile
-render.yaml
+# Ignore version control and IDE configs
+.git/
+.vscode/
+.idea/
+*.code-workspace
