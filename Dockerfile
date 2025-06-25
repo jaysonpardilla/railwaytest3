@@ -1,33 +1,35 @@
-# Base image with Python + system packages
+# Base image
 FROM python:3.10-slim
 
-# Install system-level dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
     libxrender1 \
     ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set work directory
+# Set working directory
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Copy only requirements and install early
+COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    rm -rf ~/.cache/pip
 
-# Copy project files
-COPY . /app/
+# Copy the rest of the code
+COPY . .
 
-# Make start.sh executable
-RUN chmod +x /app/start.sh
+# Make sure start script is executable
+RUN chmod +x ./start.sh
 
-# Start server
+# Start the server
 CMD ["./start.sh"]
