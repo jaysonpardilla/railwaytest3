@@ -33,5 +33,4 @@ desktop.ini
 # Docker
 .dockerignore
 Dockerfile
-start.sh
 render.yaml
